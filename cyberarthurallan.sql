@@ -37,7 +37,7 @@ WHERE quizjoueur.isAdmin = 0;
 
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `proc_getQuestions`(IN `Quiz` VARCHAR(50))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `proc_getQuestions`(IN `Quiz` VARCHAR(50))
     NO SQL
 BEGIN
 
@@ -58,7 +58,7 @@ LIMIT 15;
 
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `proc_getQuiz`(IN `Difficulte` VARCHAR(11), IN `Theme` VARCHAR(50))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `proc_getQuiz`(IN `Difficulte` VARCHAR(11), IN `Theme` VARCHAR(50))
     NO SQL
 BEGIN
 
@@ -94,7 +94,7 @@ INNER JOIN niveaudifficulte ON niveaudifficulte.id = quiz.niveauDifficulte;
 
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `proc_getReponses`(IN `Question` VARCHAR(200))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `proc_getReponses`(IN `Question` VARCHAR(200))
     NO SQL
 BEGIN
 
@@ -106,7 +106,7 @@ WHERE question.libelle = Question;
 
 END$$
 
-CREATE DEFINER=`root`@`%` PROCEDURE `proc_getTop`(IN `numeroQuiz` INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `proc_getTop`(IN `numeroQuiz` INT)
 BEGIN
    
     SELECT quizjoueur.nom, quizjoueur.prenom, quizjoueur.login, resultat.nbBonnesRep 
@@ -162,7 +162,7 @@ RETURN retour;
 
 END$$
 
-CREATE DEFINER=`root`@`%` FUNCTION `func_addPropositions`(`libelle` VARCHAR(200)) RETURNS int(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `func_addPropositions`(`libelle` VARCHAR(200)) RETURNS int(11)
     NO SQL
 BEGIN
     DECLARE retour INT;
@@ -182,7 +182,7 @@ BEGIN
     RETURN retour;
 END$$
 
-CREATE DEFINER=`root`@`%` FUNCTION `func_addQuestion`(`question` VARCHAR(200), `lvlDifficulte` VARCHAR(1), `letheme` INT(20)) RETURNS int(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `func_addQuestion`(`question` VARCHAR(200), `lvlDifficulte` VARCHAR(1), `letheme` INT(20)) RETURNS int(11)
     NO SQL
 BEGIN
 DECLARE retour INT;
@@ -204,7 +204,7 @@ RETURN retour;
 
 END$$
 
-CREATE DEFINER=`root`@`%` FUNCTION `func_addQuestionQuiz`(`numeroQuestion` INT, `numeroQuiz` INT) RETURNS varchar(30) CHARSET utf8
+CREATE DEFINER=`root`@`localhost` FUNCTION `func_addQuestionQuiz`(`numeroQuestion` INT, `numeroQuiz` INT) RETURNS varchar(30) CHARSET utf8
     NO SQL
 BEGIN
 
@@ -245,7 +245,7 @@ BEGIN
     RETURN retour;
 END$$
 
-CREATE DEFINER=`root`@`%` FUNCTION `func_addReponse`(`numeroQuestion` INT(11), `numeroProposition` INT(11), `bonneReponse` TINYINT(1)) RETURNS varchar(30) CHARSET utf8
+CREATE DEFINER=`root`@`localhost` FUNCTION `func_addReponse`(`numeroQuestion` INT(11), `numeroProposition` INT(11), `bonneReponse` TINYINT(1)) RETURNS varchar(30) CHARSET utf8
     NO SQL
 BEGIN
 
@@ -266,7 +266,7 @@ VALUES (numeroQuestion , numeroProposition,bonneReponse);
 RETURN retour;
 END$$
 
-CREATE DEFINER=`root`@`%` FUNCTION `func_addResult`(`numeroQuiz` INT, `idJoueur` INT, `nbBonnesRep` INT) RETURNS varchar(30) CHARSET utf8
+CREATE DEFINER=`root`@`localhost` FUNCTION `func_addResult`(`numeroQuiz` INT, `idJoueur` INT, `nbBonnesRep` INT) RETURNS varchar(30) CHARSET utf8
     NO SQL
 BEGIN
 DECLARE retour varchar(30) DEFAULT "valide";
@@ -286,7 +286,7 @@ RETURN retour;
 
 END$$
 
-CREATE DEFINER=`root`@`%` FUNCTION `func_addSection`(`nom` VARCHAR(20), `annee` VARCHAR(20), `specialite` VARCHAR(50)) RETURNS varchar(30) CHARSET utf8
+CREATE DEFINER=`root`@`localhost` FUNCTION `func_addSection`(`nom` VARCHAR(20), `annee` VARCHAR(20), `specialite` VARCHAR(50)) RETURNS varchar(30) CHARSET utf8
     NO SQL
 BEGIN
 
@@ -346,7 +346,7 @@ BEGIN
     RETURN retour;
 END$$
 
-CREATE DEFINER=`root`@`%` FUNCTION `func_isAdmin`(`idJoueur` INT) RETURNS tinyint(1)
+CREATE DEFINER=`root`@`localhost` FUNCTION `func_isAdmin`(`idJoueur` INT) RETURNS tinyint(1)
     NO SQL
 BEGIN
     DECLARE boolAdmin BOOL;
